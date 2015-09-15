@@ -1,0 +1,138 @@
+- Class: meta
+  Course: Introduction To R
+  Lesson: Plotting Basics
+  Author: VP Nagraj + Stephen Turner
+  Type: Standard
+  Organization: University of Virginia
+  Version: 2.3.1
+
+- Class: text
+  Output: "Hello and welcome to 'Plotting Basics' – this is the fifth lesson in the 'Introduction To R' swirl course."
+
+- Class: text
+  Output: "Before we get into the lesson, it's worth noting that we've loaded the 'gm' data frame for you. If you haven't worked through the 'Data Frames' lesson (or if it's been a while ...) that data frame contains information about national life expectancy, GDP and population over time and across continents."
+
+- Class: cmd_question
+  Output: "We'll be using the 'gm' object to explore some of the basics of plotting in R. Use the str() function to familiarize yourself with the data frame."
+  CorrectAnswer: str(gm)
+  AnswerTests: omnitest(correctExpr="str(gm)")
+  Hint: "The syntax you want is str(INSERTDATAFRAMENAMEHERE) – for more help type ?str"
+
+- Class: text
+  Output: "Okay let's get started ..."
+
+- Class: text
+  Output: "There are a few different ways to make plots (e.g. graphs, visualizations) in R."
+
+- Class: text
+  Output: "If you've been around advanced R users, then you may have heard of a package called 'ggplot2'."
+
+- Class: text
+  Output: "There's also another graphing system available through the 'lattice' package."
+
+- Class: text
+  Output: "Both of these packages can be helpful for advanced visualizations, but in this lesson we're focusing on the built-in plotting mechanisms in base R."
+
+- Class: text
+  Output: "The base R function for plotting objects is called plot()"
+
+- Class: text
+  Output: "plot() understands how to make visualizations from many different kinds of objects. It's really important to know the class of the argument you're passing into the function."
+
+- Class: cmd_question
+  Output: "Let's say we're interested in the life expectancy column from the 'gm' data frame. Use class() to see what kind of variable it is."
+  CorrectAnswer: class(gm$lifeExp)
+  AnswerTests: omnitest(correctExpr="class(gm$lifeExp)")
+  Hint: "The life expectancy variable is called lifeExp. Use the class(gm$INSERTVARIABLENAMEHERE) to check the class of this column."
+
+- Class: text
+  Output: "It's a numeric variable. No surprise there. In fact, if you remembered the output from str(gm) you may have already known that."
+
+- Class: cmd_question
+  Output: "Plotting a single numeric variable goes down the rows and plots a value on the y-axis for each observation (index) in the data frame. Try it out with the life expectancy column."
+  CorrectAnswer: plot(gm$lifeExp)
+  AnswerTests: omnitest(correctExpr="plot(gm$lifeExp)")
+  Hint: "You can pass a single variable from a data frame directly into the plot() function by using the '$' between the data frame and variable names. For example, plot(gm$pop) would plot the gm population column."
+
+- Class: text
+  Output: "The plot should have opened up in your RStudio window. Again, because we're plotting a single numeric column, the index (row number) is on the x-axis and the value of the variable is on the y-axis. This isn't a very useful figure. But you can start to see something in this data ... "
+
+- Class: cmd_question
+  Output: "Maybe a better way to examine the life expectancy variable would be to create a histogram. The function in base R to do this is hist(). For example, hist(gm$pop) would output a histogram of the data frame's population values. Use the same syntax to explore the distribution of the life expectancy column."
+  CorrectAnswer: hist(gm$lifeExp)
+  AnswerTests: omnitest(correctExpr="hist(gm$lifeExp)")
+  Hint: "For a single numeric variable you can use hist() instead of plot() to create a histogram. For more help type ?hist"
+
+- Class: cmd_question
+  Output: "Like all plots in R, histograms can accept a number of arguments that allow you to customize the visualization. The 'breaks' argument to hist() let's you specify the number of bins to separate the values into. The 'color' argument let's you change the color of the bars. So hist(gm$gdpPercap, breaks=50, col='red') would generate a histogram of the GDP variable with 50 breaks and red bars. Try creating another histogram of the life expectancy column, this time with 100 breaks and blue bars."
+  CorrectAnswer: hist(gm$lifeExp, breaks=100, col='blue')
+  AnswerTests: omnitest(correctExpr="hist(gm$lifeExp, breaks=100, col='blue')")
+  Hint: "The hist() function takes a lot of arguments. The first is always the object to be plotted, after that you can add 'breaks=' to specify a number of breaks or 'col=' to change the color of the bars. For more help type ?hist"
+
+- Class: text
+  Output: "The histogram is a great way to explore single numeric variables. But what if you have more than one column of values you're interested in? A scatter plot is a helpful method for visualizing the interactions between two numeric variables."
+
+- Class: cmd_question
+  Output: "Creating a scatter plot with base R is easy. We can give the plot() function two numeric variables as arguments. The first will be the x-axis and the second will be the y-axis. Try it out with GDP on the x-axis and life expectancy on the y-axis"
+  CorrectAnswer: plot(gm$gdpPercap, gm$lifeExp)
+  AnswerTests: omnitest(correctExpr="plot(gm$gdpPercap, gm$lifeExp)")
+  Hint: "Use plot(INSERTVARIABLENAMEHERE, INSERTVARIABLENAMEHERE) to plot two numeric columns against each other. The GDP variable (gdpPercap) will be first since it's the x-axis and GDP variable (gdpPercap) life expectancy variable (lifeExp) will be second since it's the y-axis."
+
+- Class: text
+  Output: "Cool. The scatter plot indicates that there might be a relationship between the variables. We probably want to explore further. But as we produce more of these scatter plots typing out the 'gm' object name multiple times can get cumbersome."
+
+- Class: cmd_question
+  Output: "The with() function gives us a shortcut for accessing variables. Typing with(gm, plot(pop,lifeExp)) would give us a scatter plot of population versus life expectancy. As you can see, we didn't have to use the '$' syntax because the plot knows to look in the 'gm' object defined by the with function. Use this approach to recreate the scatter plot of GDP versus life expectancy."
+  CorrectAnswer: with(gm, plot(gdpPercap, lifeExp))
+  AnswerTests: omnitest(correctExpr="with(gm, plot(gdpPercap, lifeExp))")
+  Hint: "with(INSERTDATAFRAMENAMEHERE, plot(INSERTVARIABLENAMEHERE, INSERTVARIABLENAMEHERE)) will save you some typing – for more information about with() use ?with"
+
+- Class: text
+  Output: "Okay ... now we have a quick(er) way to make this scatter plot. Let's add some additional arguments."
+
+- Class: cmd_question
+  Output: "There are hundreds of plotting parameters you can use to make your plot look exactly like you want. Let's use an open triangle instead of an open circle with the 'pch=' (point character) argument. As Google will tell you, the value for an open triangle pch is 2. Try it out for yourself by typing with(gm, plot(gdpPercap, lifeExp, pch = 2))"
+  CorrectAnswer: with(gm, plot(gdpPercap, lifeExp, pch = 2))
+  AnswerTests: omnitest(correctExpr="with(gm, plot(gdpPercap, lifeExp, pch = 2))")
+  Hint: "You can pass graphical parameters after the x and y variables of a scatter plot. 'pch=' will change the shape of the points."
+
+- Class: cmd_question
+  Output: "Now let's change the color. Type the code to make the same plot, but add col = 'red' after the pch parameter. And don't forget to use a comma to separate arguments."
+  CorrectAnswer: with(gm, plot(gdpPercap, lifeExp, pch = 2, col = 'red'))
+  AnswerTests: omnitest(correctExpr="with(gm, plot(gdpPercap, lifeExp, pch = 2, col ='red'))")
+  Hint: "You can pass graphical parameters after the x and y variables of a scatter plot. 'col=' change the color of the points. This argument takes either hex color values (e.g. '#FF0000') or names of colors (e.g. 'red'). In both cases you need to use quotes around the values passed to the argument."
+
+- Class: cmd_question
+  Output: "If we wanted to add a title to the plot we would use the 'main =' parameter. Give the plot the title 'Life Exp vs GDP'."
+  CorrectAnswer: with(gm, plot(gdpPercap, lifeExp, pch = 2, col = 'red', main = 'Life Exp vs GDP'))
+  AnswerTests: omnitest(correctExpr="with(gm, plot(gdpPercap, lifeExp, pch = 2, col = "red", main = 'Life Exp vs GDP'))")
+  Hint: "'main=' changes the title of the plot. You need to use quotes around the values passed to the argument. In this case, make sure your casing and spelling matches the following: 'Life Exp vs GDP'"
+- Class: cmd_question
+  Output: "It's good practice to label axes, so let's do that on this plot. For the x-axis label you can use the 'xlab=' argument. For the y-axis you can use the 'ylab=' argument. On this plot, we should call the x-axis 'Per-capita GDP ($)' and the y-axis 'Life Expectancy (years)'. Give it a shot."
+  CorrectAnswer: with(gm, plot(gdpPercap, lifeExp, pch = 2, col = "red", main = 'Life Exp vs GDP', xlab='Per-capita GDP ($)', ylab='Life Expectancy (years)'))
+  AnswerTests: omnitest(correctExpr="with(gm, plot(gdpPercap, lifeExp, pch = 2, col = "red", main = 'Life Exp vs GDP', xlab='Per-capita GDP ($)', ylab='Life Expectancy (years)'))")
+  Hint: "'xlab=' and 'ylab=' change the x and y axes labels respectively.. You need to use quotes around the values passed to the argument. In this case, make sure your casing and spelling matches the following: 'Per-capita GDP ($)' (for xlab) and 'Life Expectancy (years)' (for ylab)."
+
+- Class: text
+  Output: "With plotting parameters, Google is your friend. Forget what each point character represents? Google R pch. Forget the names of R's colors? Google R colors. Want to learn more about color schemes in R? Google RColorBrewer. Or just try Googling R graphical parameters. There are all kinds of references available to help you strengthen the quality of your plots."
+
+- Class: text
+  Output: "That's it for 'Plotting Basics' ... emphasis on the 'Basics'. We've just scratched the surface of what you can do with visualizations in R."
+
+- Class: text
+  Output: "Let's do a recap of what we covered ... "
+
+- Class: text
+  Output: "First we introduced the plot() function and used it on a single numeric variable ..."
+
+- Class: text
+  Output: "Then we implemented hist() for a better plot of the same variable ..."
+
+- Class: text
+  Output: "Then we tried making a scatter plot of two numeric variables ..."
+
+- Class: text
+  Output: "The we introduced the with() function as a shortcut for calling multiple columns from the same object ... "
+
+- Class: text
+  Output: "And last of all we used a few parameters to improve the quality of the plot."

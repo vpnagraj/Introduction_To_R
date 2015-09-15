@@ -1,0 +1,131 @@
+- Class: meta
+  Course: Introduction To R
+  Lesson: Vectors
+  Author: VP Nagraj + Stephen Turner
+  Type: Standard
+  Organization: University of Virginia
+  Version: 2.3.1
+
+- Class: text
+  Output: "Hello and welcome to 'Vectors', the third lesson in the 'Introduction To R' swirl course. We'll be introducting one of the most common types of objects you'll use in R -- the vector."
+
+- Class: text
+  Output: "Vectors (aka 'arrays' in Perl, 'lists' in Python) are single objects containing an ordered collection of elements. A simple vector is a numeric vector, a single object containing several numbers."
+
+- Class: text
+  Output: "When viewing vectors that have lots of elements, notice that the bracketed number in the gutter of the output -- this is a counter indexing the number of elements in the vector."
+
+- Class: cmd_question
+  Output: "Here let's display a few vectors. Type 1:10 to create a vector of values from 1 through 10."
+  CorrectAnswer: 1:10
+  AnswerTests: omnitest(correctExpr="1:10")
+  Hint: "Use the colon between integers to create a numeric vector."
+
+- Class: text
+  Output: "Another way to create the same vector would be to use a function called c, which is short for 'combine'. In this case the equivalent of 1:10 would be c(1,2,3,4,5,6,7,8,9,10)"
+
+- Class: cmd_question
+  Output: "Using the c function, create a vector of 1,2 and 5"
+  CorrectAnswer: c(1,2,5)
+  AnswerTests: omnitest(correctExpr="c(1,2,5)")
+  Hint: "c(1,2,5) should do the trick ..."
+
+- Class: text
+  Output: "Great. You can see that the vector you created does not contain 3 or 4. That's because you told R to create a vector with specific values."
+
+- Class: text
+  Output: "What if we wanted to create a vector from 2 to 200 by 2s? This might be useful for setting up an experiment where every other sample is an experimental group and every other is a control."
+
+- Class: cmd_question
+  Output: "There is a function called seq that will create a vector of numbers by a specified interval. For example, seq(0, 60 by=2) will give you a vector containing all of the even numbers from 2 through 60. Type the expression that will give you all of the numbers from 2 through 200 by increments of 2."
+  CorrectAnswer: seq(2,200, by=2)
+  AnswerTests: omnitest(correctExpr="seq(2,200, by=2)")
+  Hint: "Make sure you're going from 2 to 200 by 2. If you need more help pull up the documentation for seq using either ?seq or help(seq)"
+
+- Class: cmd_question
+  Output: "The really nice thing is that we can save the output of this experession to an object. Let's say the vector we created above represents some kind of experimental result. Use the assignment operator to save the expression to a variable called results1"
+  CorrectAnswer: results1 <- seq(2,200,by=2)
+  AnswerTests: omnitest(correctExpr="results1 <- seq(2,200,by=2)")
+  Hint: "To assign the output of an expression to an object you use the syntax name <- expression"
+
+- Class: cmd_question
+  Output: "There are many functions that allow you to inspect the contents of a vector. The length function tells you how many elements are in a particular vector. Type length(results1) to inspect the vector you just created."
+  CorrectAnswer: length(results1)
+  AnswerTests: omnitest(correctExpr="length(results1)")
+  Hint: "Type length(results1) to get the number of elements in the vector."
+
+- Class: cmd_question
+  Output: "Another very useful function in R is called class -- passing an object's name into this function will tell you what 'type' it is. What is the class of results1?"
+  CorrectAnswer: class(results1)
+  AnswerTests: omnitest(correctExpr="class(results1)")
+  Hint: "Type class(results1) to view the class of results1."
+
+- Class: text
+  Output: "It just says numeric. What's up with that?"
+
+- Class: text
+  Output: "It's worth mentioning here that vectors can contain words as well as numbers. The class of a vector that only has numbers in it is 'numeric'. The class of a vector that includes words wrapped in quotation marks (single or double) is 'character'"
+
+- Class: cmd_question
+  Output: "Let's create a character vector just to see how it works. Store c('Purple
+    ','Rain') in an object called album"
+  CorrectAnswer: album <- c('Purple','Rain')
+  AnswerTests: omnitest(correctExpr="album <- c('Purple','Rain')")
+  Hint: "Name the object album, then use the <- assignment operator followed by c('Purple','Rain'). Make sure your casing is correct."
+
+- Class: cmd_question
+  Output: "Now use the class function to confirm that the object we just created (album) is indeed a character vector."
+  CorrectAnswer: album <- class(album)
+  AnswerTests: omnitest(correctExpr="class(album)")
+  Hint: "Use the object name (album), then the assignment operator followed by c('Purple','Rain'). Make sure your casing is correct."
+
+- Class: text
+  Output: "There's a lot more we could cover regarding character vectors, but let's get back to numbers ..."
+
+- Class: text
+  Output: "With a vector saved as an object you now have a shortcut to use it elsewhere. One thing you may want to do with numeric vectors is perform arithmetic."
+
+- Class: cmd_question
+  Output: "Create another object called results2 that represents the sequence of 1 through 100 by increments of 1."
+  CorrectAnswer: results2 <- seq(1,100,by=1)
+  AnswerTests: omnitest(correctExpr="results2 <- seq(1,100,by=1)")
+  Hint: "Name your object results2 and use the <- operator to assign it to seq(1,100,by=1)"
+
+- Class: cmd_question
+  Output: "R can know see both results1 and results2. With these objects in memory you can perform math operations. Try adding results1 and results2"
+  CorrectAnswer: results1 + results2
+  AnswerTests: omnitest(correctExpr="results1 + results2")
+  Hint: "Put the + operator between results1 and results2 to add the vectors."
+
+- Class: text
+  Output: "The output of adding these two vectors is ... another vector. The elements of each original vector were matched up and added together. For example, the fourth item in results1 -- 8 -- was added to the fourth item in results2 -- 4 -- so that the fourth item in the output vector equals 12."
+
+- Class: cmd_question
+  Output: "You can do more than simple arithmetic on these two vectors. For example, let's say we want to know which values overlap between results1 and results2. There's a function called intersect that will compare two vectors for matching elements. Use intersect on results1 and results2"
+  CorrectAnswer: intersect(results1,results2)
+  AnswerTests: omnitest(correctExpr="intersect(results1,results2)")
+  Hint: "Make sure you're spelling results1 and results2 correctly. If you need more guidance on the syntax of the intersect function use ?intersect or help(intersect)."
+
+- Class: text
+  Output: "We mentioned the square brackets at the beginning of this lesson. These are the indices for the vector. You can access certain elements of that vector by typing the name of the object followed by the element's index/indices in brackets."
+
+- Class: text
+  Output: "For example, if we had a vector called x, then x[1] will return the first element."
+
+- Class: text
+  Output: "To subset mulitple elements out of a vector we can use the c function or the colon syntax. Calling x[c(3,5)] will access the third and fifth elements. Calling x[1:10] will return the first ten elements of x"
+
+- Class: cmd_question
+  Output: "Use the vector indices to get the first 20 elements from results1"
+  CorrectAnswer: results1[1:20]
+  AnswerTests: omnitest(correctExpr="results1[1:20]")
+  Hint: "Make sure you're spelling results1 correctly and following it immediately with brackets that contain the range of elements you want ... in this case 1:20"
+
+- Class: text
+  Output: "One important thing to note is that R indexes vectors starting at 1. This is different from many other languages, including Perl and Python, which index starting from 0."
+
+- Class: text
+  Output: "That concludes the lesson on vectors. Here's a quick recap: you just learned how to create and save a vector (both character and numeric), how to perform some simple operations on multiple vectors at once and how to pull specific elements out of a vector using bracketed indices."
+
+
+

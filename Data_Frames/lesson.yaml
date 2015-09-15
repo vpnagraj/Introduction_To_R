@@ -1,0 +1,151 @@
+- Class: meta
+  Course: Introduction_To_R
+  Lesson: Data Frames
+  Author: VP Nagraj + Stephen Turner
+  Type: Standard
+  Organization: University of Virginia
+  Version: 2.3.1
+
+- Class: text
+  Output: "Hello and welcome to 'Data Frames', the fourth lesson in the 'Introduction To R' swirl course."
+
+- Class: text
+  Output: "We use data frames to store heterogeneous tabular data in R. Let's break that down ..."
+
+- Class: text
+  Output: "Tabular, meaning that individuals or observations are typically represented in rows, while variables or features are represented as columns ... "
+
+- Class: text
+  Output: "Heterogeneous, meaning that columns/features/variables can be different classes (one variable, e.g. age, can be numeric, while another, e.g., cause of death, can be text)."
+
+- Class: text
+  Output: "Before we get started on the lesson it's important to point out a few things ... "
+
+- Class: text
+  Output: "When you started the lesson you may have noticed a message about a package being loaded – packages (also called libraries) are add-ons to base R that provide helpful functions. The package we've installed for you is an amazing data manipulation library called dplyr."
+
+- Class: text
+  Output: "There are two steps to using a package: first you need to install it on your system using the install.packages() function. We've already taken care of this step for you with dplyr, so no need to do that."
+
+- Class: cmd_question
+  Output: "The next step is to call the library() function with the name of the package as the argument to load it into your current environment. We've already taken care of this too, but go ahead and give it a shot."
+  CorrectAnswer: library(dplyr)
+  AnswerTests: omnitest(correctExpr="library(dplyr)")
+  Hint: "The syntax for for loading a package is library(INSERTPACKAGENAMEHERE) – keep in mind that the package name is case sensitive. For more help try ?library"
+
+- Class: text
+  Output: "So as long as you didn't get any errors, you know dplyr is loaded."
+
+- Class: text
+  Output: "Besides loading a package we've also given you a data frame to start with. If you're using RStudio you probably saw something called 'gm' appear in your environment tab when you began the lesson."
+
+- Class: cmd_question
+  Output: "With the data frame loaded, we can type the name of the object (in this case 'gm' ... without quotes) to view the entire data frame. Doing this with very large data frames can cause you trouble – try typing gm to see what happens in this case."
+  CorrectAnswer: gm
+  AnswerTests: omnitest(correctExpr="gm")
+  Hint: "Just type the name of the data frame to print its contents (or at least as many that can fit) to the console."
+
+- Class: cmd_question
+  Output: "Wow. That's ugly. Good thing there are better ways to view the contents of a data frame. The View() function (note that the 'V' is upper case) will open the data frame in a new tab inside the RStudio source pane. Try it out with gm"
+  CorrectAnswer: View(gm)
+  AnswerTests: omnitest(correctExpr="View(gm)")
+  Hint: "The syntax you need is View(INSERTDATAFRAMENAMEHERE) – keep in mind that the data frame name is case sensitive and the View function starts with an upper case 'V' – for more help try ?View"
+
+- Class: text
+  Output: "That helps. We can now see that there are columns named country, contient, year, lifeExp, pop, gdpPercap ... but it's still kind of hard to look at for a data frame as big as gm. In this case, head() and tail() can help by printing the first and last observations of the data frame respectively."
+
+- Class: cmd_question
+  Output: "As a default, head() and tail() will output six rows. You can change this by using an extra argument. For example head(gm, n=8) will give you the first eight observations. Try accessing the last three rows of gm"
+  CorrectAnswer: tail(gm, n=3)
+  AnswerTests: omnitest(correctExpr="tail(gm, n=3)")
+  Hint: "tail(INSERTDATAFRAMENAMEHERE) function will give you the last six observations of a data frame by default – you can add an argument for 'n=' to specify a certain number of rows. For more help type ?tail"
+
+- Class: text
+  Output: "There are a lot of other helpful functions for exploring data frames. nrow() will tell you how many rows are in a data frame. ncol() will tell you how many columns. And dim() will tell you both."
+
+- Class: cmd_question
+  Output: "Maybe the most comprehensive function for exploring a data frame is str() – try it out on gm to see why ..."
+  CorrectAnswer: str(gm)
+  AnswerTests: omnitest(correctExpr="str(gm)")
+  Hint: "The syntax you need is str(INSERTDATAFRAMENAMEHERE) – for more help type ?str"
+
+- Class: text
+  Output: "str(gm) tells you that gm is in fact a data frame, with 1704 observations of 6 variables – the function also outputs the name and class of each variable. The 'country' column is a factor with 142 levels (or categories), while 'year' is an integer, etc."
+
+- Class: text
+  Output: "gm illustrates a very important feature of data frames, which is that they can contain variables of different classes (e.g. factor, number, integer, character) side by side."
+
+- Class: text
+  Output: "What if we wanted to look at specific row, column combination in the data frame? Like vectors, data frames can be indexed with the '[ ]' notation. The only difference is that a data frame has more than one dimension. So, for example, if you wanted to look at the value for the ninth row of the second column of gm, you could type gm[9,2]"
+
+- Class: text
+  Output: "There's nothing wrong with this syntax, but it can be kind of arduous on larger data sets. In particular, keeping track of column indexes while you're adding, removing and processing variables is tricky. There's got to be an easier way ..."
+
+- Class: cmd_question
+  Output: "You might have noticed the '$' in front of the str() output. That dollar sign symbol is a shortcut for accessing variables in a data frame by name. For example, gm$country will give us the population column. Go ahead and use the '$' to access the population variable."
+  CorrectAnswer: gm$pop
+  AnswerTests: omnitest(correctExpr="gm$pop")
+  Hint: "Type gm$pop to output the contents of the pop variable."
+
+- Class: text
+  Output: "The output from gm$pop is the entirity of the contents of the population variable. Again, for a data frame as big as gm, this is a lot to look at. Remember how we inspected portions of the whole data frame with head() and tail()? We can use some of same the helper functions to examine parts of a variable."
+
+- Class: cmd_question
+  Output: "Besides simple helper functions you can pass variables accessed with the '$' to other functions too. For example, you could take the mean of population for all observations in gm. Try it out below."
+  CorrectAnswer: mean(gm$pop)
+  AnswerTests: omnitest(correctExpr="mean(gm$pop)")
+  Hint: "Type mean(gm$INSERTVARIABLENAMEHERE) to output the mean of the values stored in a given variable – keep in mind that this will only work for columns that are 'numeric' or 'integer'."
+
+- Class: text
+  Output: "Now that's not too interesting. This is the average life expectancy across all countries across all years. We might be interested in something like the life expectancy for a particular country, and how that changes over time. Or maybe the average life expectancy across all countries, separately for each year. Or maybe the average life expectancy for different continents. So the natural next step here is to filter the data according to some criterion – that is, we'll limit the rows that are returned by restricting the value of some variable stored in a column."
+
+- Class: text
+  Output: "There's a built-in function in R called subset() that lets you limit the contents of a data frame based on a specified parameter. The 'dplyr' package we loaded at the beginning of the lesson has a function called filter() that makes the filtering process even easier ... so let's use that."
+
+- Class: text
+  Output: "filter() returns a data frame based on two arguments – the first is the name of the data frame to be filtered, and the second is the condition the data must satisfy. So for example if we wanted a smaller version of gm that only included information from the year 1982, we could use filter(gm, year==1982) "
+
+- Class: text
+  Output: "The '==' means exactly equal to. You can use other operators too – if we wanted all of the years except 1982 we would type filter(gm, year != 1982). For all of the years before or after 1982 we can use the '<' or '>' – and we can make these inclusive (so that they capture 1982) with '<=' or '>=' respectively."
+
+- Class: cmd_question
+  Output: "Your turn. Use the filter() function to output a subset of gm that only includes the years since 1997."
+  CorrectAnswer: filter(gm, year>1997)
+  AnswerTests: omnitest(correctExpr="filter(gm, year>1997)")
+  Hint: "Because we're looking for values in the year column that are larger than 1997 we want to use the '>' operator in our filter function. For more help type ?filter"
+
+- Class: text
+  Output: "Great. We have the years since 1997 –in this case that only means 2002 and 2007. But what if we wanted to look at a specific contintent as well? filter() will take mulitple conditions as long as you separate them with operators – to 'AND' conditions you use '&', while to 'OR' conditions you use '|'"
+
+- Class: cmd_question
+  Output: "Let's try an example. Say we wanted to look at years since 1997 and only african nations. We would build the subset using filter(gm, year>1997 & continent == 'Africa') – note the '=='operator to denote exact matches. Because the continent variable is a factor (and not a number) we need quotes around the value of interest, and we need to make sure our casing is correct. Use the same method to look at years since 1997 for European nations"
+  CorrectAnswer: filter(gm, year>1997 & continent == 'Europe') 
+  AnswerTests: omnitest(correctExpr="filter(gm, year>1997 & continent == 'Europe')")
+  Hint: "The value for European nations in the content variable is 'Europe' – make sure you have the '>' operator for year and the '==' for continent. For more help type ?filter"
+
+- Class: text
+  Output: "So what we are looking at here is the gm data for European nations since 1997. It's important to remember that this subset is a data frame, in the same way that gm is a data frame. That means  we can wrap helper functions like head() or tail() around the filtering expression to examine the subset. It also means we can use the '$' operator to look at individual variables."
+
+- Class: cmd_question
+  Output: "head(filter(gm, year>1997 & continent == 'Europe')$gdpPercap) will give us the first six gdpPercap values from the subset. Try using a similar approach to calculate the mean life expectancy for all European nations since 1997."
+  CorrectAnswer: mean(filter(gm, year>1997 & continent == 'Europe')$lifeExp)
+  AnswerTests: omnitest(correctExpr="mean(filter(gm, year>1997 & continent == 'Europe')$lifeExp)")
+  Hint: "Wrap the mean function around the filter expression we created above, and then use the '$' operator to access the lifeExp variable "
+
+- Class: text
+  Output: "Good work. Using the available data, the filter() function from the 'dplyr' package and the base r mean() function you just answered a very specific question – what is the average life expectancy in European countries since 1997?"
+
+- Class: text
+  Output: "That's the end of this lesson, let's briefly recap what we covered ... "
+
+- Class: text
+  Output: "First we loaded a data frame ... "
+
+- Class: text
+  Output: "Then we inspected that data frame with helper functions like str(), head() and tail() ... "
+
+- Class: text
+  Output: "Then we learned how to access individual columns with the '$' operator ... "
+
+- Class: text
+  Output: "Last of all we filtered the data frame on multiple conditions, and made a computation with an individual column in that data frame."
