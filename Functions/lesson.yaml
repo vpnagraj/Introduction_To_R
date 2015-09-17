@@ -22,7 +22,7 @@
   Output: "To find out more about function you can consult the help documentation. Typing ?log or help(log) will bring up the help file for the log function. Go for it."
   CorrectAnswer: ?log
   AnswerTests: omnitest(correctExpr="?log")
-  Hint: "To access help documentation for a specific function type ?INSERTFUNCTIONNAMEHERE or help(INSERTFUNCTIONNAMEHERE"
+  Hint: "To access help documentation for a specific function type ?INSERTFUNCTIONNAMEHERE or help(INSERTFUNCTIONNAMEHERE)"
 
 - Class: text
   Output: "If you're in RStudio you should have the help file for log open in the 'Help' pane. As you can see, the documentation gives a brief description of the function, details, references and some examples of usage."
@@ -34,13 +34,13 @@
   Output: "Let's see what the log of 100 with base=10 is ..."
   CorrectAnswer: log(100,10)
   AnswerTests: omnitest(correctExpr="log(100,10)")
-  Hint: "To compute the log with base=10 you can either specify a base argument to the log function or use the log10 function. ?log will show you the syntax for both methods."
+  Hint: "To compute the log with base=10 you can specify a base argument to the log function. ?log will show you the syntax."
 
 - Class: cmd_question
   Output: "Awesome. Hopefully you've seen how useful the help documentation for functions can be. The last thing to do is look at the documentation for the seq function, which we will be using in the next lesson. Go ahead and pull up the help file for seq."
   CorrectAnswer: ?seq
   AnswerTests: omnitest(correctExpr="?seq")
-  Hint: "To access help documentation for a specific function type ?INSERTFUNCTIONNAMEHERE or help(INSERTFUNCTIONNAMEHERE"
+  Hint: "To access help documentation for a specific function type ?INSERTFUNCTIONNAMEHERE or help(INSERTFUNCTIONNAMEHERE)"
 
 - Class: text
   Output: "Alright. That's the end of the 'Functions' lesson, let's review ... "

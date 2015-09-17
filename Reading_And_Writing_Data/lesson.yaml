@@ -1,0 +1,73 @@
+- Class: meta
+  Course: Introduction To R
+  Lesson: Reading And Writing Data
+  Author: your name goes here
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.2.21
+
+- Class: text
+  Output: "Welcome to 'Reading And Writing Data'. In this lesson we'll introduce methods for reading and writing data into and out of your R session."
+
+- Class: text
+  Output: "We glazed over this step during the 'Data Frames' lesson when we were looking at the 'gm' object. In that case we loaded the data frame for you. You'll use the read.csv() function to do the same thing here."
+
+- Class: text
+  Output: "It's worth noting that there are functions in R to read in many different data formats. This lesson only covers the read.csv() and write.csv() functions, both of which work with comma separted values (csv) files."
+
+- Class: text
+  Output: "read.csv() takes several arguments. The first (and most important) is the path to the file that contains the data. Generally, you want to have your data in the same directory as your current R script. In these cases the file argument is just the name of the file with its extension in quotes. For example, read.csv('mydata.csv')."
+
+- Class: cmd_question
+  Output: "In this case, the gapminder.csv file is not in your current working directory. For expedience, we've given you the path to the file as a variable – if you look in your environment tab you should see something called 'datapath' ... that's it. Go ahead and take a look at datapath by typing its name."
+  CorrectAnswer: datapath
+  AnswerTests: omnitest(correctExpr="datapath")
+  Hint: "Type datapath into the console to see where the gapminder.csv file is being stored."
+
+- Class: cmd_question
+  Output: "The path above is where the gapminder.csv file lives on your computer. That path is kind of messy – you can see why it's helpful to give it a name. Now type gm <- read.csv(datapath) to create the 'gm' object from the gapminder.csv file. Note that datapath is already a string, so you don't need to put quotes around it in the read.csv() function."
+  CorrectAnswer: gm <- read.csv(datapath)
+  AnswerTests: omnitest(correctExpr="gm <- read.csv(datapath)")
+  Hint: "The syntax you need is read.csv(INSERTPATHTODATAHERE) – if you've saved the data path as a variable then you can pass the function that variable name without quotes around it."
+
+- Class: text
+  Output: "You should see an object in your environment window called 'gm' ..."
+
+- Class: cmd_question
+  Output: "read.csv() converts csv files to data frames, and accepts many arguments that may vary with the structure of the file you're working with. For gapminder.csv, we were able to use all of the defaults. But, for example, if we had a file that didn't have column names we would want to use the 'header=FALSE' argument so as not to turn the first row of data into a header. Pull up the help file for read.csv() and take a look at some of the other arguments."
+  CorrectAnswer: ?read.csv
+  AnswerTests: omnitest(correctExpr="?read.csv")
+  Hint: "?read.csv will access the help file for read.csv()"
+
+- Class: text
+  Output: "You may find that you need to save an object as a csv file to share with a collaborator. The write.csv() function works a lot like read.csv() ... but kind of in reverse."
+
+- Class: text
+  Output: "The first argument to write.csv() is the name of the data frame to be written, while the second argument is the path and name of the proposed file. So for example, if you have a data frame called mydata using write.csv(mydata, 'mydata.csv') would create a csv file from the mydata object and write it to your current working directory."
+
+- Class: cmd_question
+  Output: "Let's try creating a csv file. First, we'll use the 'gm' object to create a small dataset that only has the data for 1997 in it. And we'll need to save that subset as a new data frame, which will eventually be written to a csv file. Type the following to create the object we want gm97 <- filter(gm, year==1997) "
+  CorrectAnswer: gm97 <- filter(gm, year==1997)
+  AnswerTests: omnitest(correctExpr="gm97 <- filter(gm, year==1997)")
+  Hint: "The filter() function from the dplyr package takes the data frame being filtered as the first argument, and the condition on which to subset as the second. For this example, the year should equal 1997 and the result should be saved to a variable called gm97"
+
+- Class: cmd_question
+  Output: "Great. Now that we have the 'gm97' object created let's write it to a csv file. Use write.csv() to create a file named gm97.csv in your current working directory."
+  CorrectAnswer: write.csv(gm97, 'gm97.csv')
+  AnswerTests: omnitest(correctExpr="write.csv(gm97, 'gm97.csv')")
+  Hint: "write.csv() the name of the object (gm97) first, followed by the path / name of the file ('gm97.csv'). For more help use ?write.csv()"
+
+- Class: text
+  Output: "Now where did that file go? Becasue you didn't specify otherwise, it was written into the current working directory of your R session. That's something you can change in RStudio (via Preferences > General) or with the setwd() command. But to make your code reproducible for others (who will probably NOT have exactly the same file structure as you ...) you should really be working in the same directory as wherever you have your script and data stored. If you type getwd() you can see what the current working directory is – gm97.csv is in there in case you want to look at it."
+  
+- Class: text
+  Output: "That concludes this lesson, let's briefly recap what we covered ... "
+
+- Class: text
+  Output: "First we read in a csv file ... "
+
+- Class: text
+  Output: "Then we wrote out a csv file ... "
+
+- Class: text
+  Output: "Last of all we briefly discussed managing working directories in R."
