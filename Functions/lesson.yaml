@@ -1,0 +1,56 @@
+- Class: meta
+  Course: Introduction_To_R
+  Lesson: Functions
+  Author: VP Nagraj + Stephen Turner
+  Type: Standard
+  Organization: University of Virginia
+  Version: 2.3.1
+
+- Class: text
+  Output: "Welcome. This is the second lesson ('Functions') in the 'Introduction To R' swirl course. We'll briefly introduce the syntax for calling R's built-in functions, and also show you how to get help interactively."
+
+- Class: cmd_question
+  Output: "In the first lesson we covered how to do some basic math ... division, subtraction, multiplication, etc. R has built in functions to perform more complex operations. For example, log(100) will give you the log of 100. Try it out and let's see what that value is."
+  CorrectAnswer: log(100)
+  AnswerTests: omnitest(correctExpr="log(100)")
+  Hint: "To call a function type it's name, then the argument in parentheses."
+
+- Class: text
+  Output: "You may or may not have noticed something that the output from log(100) gives you the natural log of 100. But what if you wanted to compute the common (base 10) log?"
+
+- Class: cmd_question
+  Output: "To find out more about function you can consult the help documentation. Typing ?log or help(log) will bring up the help file for the log function. Go for it."
+  CorrectAnswer: ?log
+  AnswerTests: omnitest(correctExpr="?log")
+  Hint: "To access help documentation for a specific function type ?INSERTFUNCTIONNAMEHERE or help(INSERTFUNCTIONNAMEHERE"
+
+- Class: text
+  Output: "If you're in RStudio you should have the help file for log open in the 'Help' pane. As you can see, the documentation gives a brief description of the function, details, references and some examples of usage."
+
+- Class: text
+  Output: "The help file also describes what arguments can be passed to the function. In this case we were originally only a single argument to the log function. But as the documentation explains, we can calculate a log of a specific base by adding a second argument. For example, log(80,3) would give us log of 80 with base=3."
+
+- Class: cmd_question
+  Output: "Let's see what the log of 100 with base=10 is ..."
+  CorrectAnswer: log(100,10)
+  AnswerTests: omnitest(correctExpr="log(100,10)")
+  Hint: "To compute the log with base=10 you can either specify a base argument to the log function or use the log10 function. ?log will show you the syntax for both methods."
+
+- Class: cmd_question
+  Output: "Awesome. Hopefully you've seen how useful the help documentation for functions can be. The last thing to do is look at the documentation for the seq function, which we will be using in the next lesson. Go ahead and pull up the help file for seq."
+  CorrectAnswer: ?seq
+  AnswerTests: omnitest(correctExpr="?seq")
+  Hint: "To access help documentation for a specific function type ?INSERTFUNCTIONNAMEHERE or help(INSERTFUNCTIONNAMEHERE"
+
+- Class: text
+  Output: "Alright. That's the end of the 'Functions' lesson, let's review ... "
+
+- Class: text
+  Output: "First we used a simple math function ... "
+
+- Class: text
+  Output: "Then we learned how to access the help documentation for a function ... "
+
+- Class: text
+  Output: "Last of all we passed an extra argument to change how the function default."
+  
