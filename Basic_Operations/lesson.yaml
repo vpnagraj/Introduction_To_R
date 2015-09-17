@@ -1,0 +1,109 @@
+- Class: meta
+  Course: Introduction_To_R
+  Lesson: Basic Operations
+  Author: VP Nagraj + Stephen Turner
+  Type: Standard
+  Organization: University of Virginia
+  Version: 2.3.1
+
+- Class: text
+  Output: "Welcome to the 'Introdcution To R' swirl course. The first lesson ('Basic Operations') will cover how to use some basic math functions and assignment of values to objects.  Let's get going."
+
+- Class: text
+  Output: "We'll start by learning about RStudio. R is the underlying statistical computing environment, but using R alone is no fun. RStudio is a graphical integrated development environment that makes using R much easier."
+
+- Class: text
+  Output: "The RStudio interface is a window divided into panes - these can include an editor, console, environment/history and plots/help. If you're reading this then you're looking at the console pane. You can edit this layout by going to 'Tools' > 'Global Options' > 'Pane Layout'. Now that we know a little about RStudio we can dive into R."
+
+- Class: cmd_question
+  Output: "R can be used as a glorified calculator. Basic math operations like addition, subtraction, multiplication, etc. all have their own operators. For example typing 2 * 7 in the console will give you 14 ... 2 + 7 will give you 9 ... and so on. Let's dividing 2 by 7 and see what we get."
+  CorrectAnswer: 2 / 7
+  AnswerTests: omnitest(correctExpr="2 / 7")
+  Hint: "The syntax for a division operation is simply x / y where x is the numerator and y is the denominator."
+
+- Class: text
+  Output: "R is also smart enough to understand order of operations. For example 2 + 3 * 4/(5 + 3) will be 3.5"
+
+- Class: mult_question
+  Output: "What is 5 ^ 2 + 1 according to R?"
+  AnswerChoices: 26;125
+  CorrectAnswer: 26
+  AnswerTests: omnitest(correctVal= '26')
+  Hint: "Without parentheses to slow it down R will walk through the operations one at a time."  
+
+- Class: text
+  Output: "R works through the order of operations ... so without parentheses it will evaluate each operator in sequence. That's great. But so what?"
+
+- Class: text
+  Output: "To be able to do truly interesting things in R we need to assign values to objects. To create an object, we give it a name followed by the assignment operator <- and its value. For example if we were recording Michael Jordan's height in centimeters we could store it as something like: height_cm <- 200"
+
+- Class: text
+  Output: "It's worth emphasizing that <- is the operator that assigns values on the right to objects on the left. You can think of it like an arrow that points from the value to the object. This operator is mostly similar to = but not always. Learn to use <- as it is good programming practice. Using = in place of <- can lead to issues down the line."
+
+- Class: text
+  Output: "Objects can be given any name such as x, current_temperature or subject_id. You want your object names to be explicit and not too long. They cannot start with a number (2x is not valid but x2 is). R is case sensitive and not going to forgive your spelling errors - weight_kg is different from Weight_kg is different from wieght_kg, etc."
+
+- Class: text
+  Output: "Note that there are some names that cannot be used because they represent the names of fundamental functions in R (e.g., if, else, for). In general, even if it's allowed, it's best to not use other function names, which we'll get into shortly (e.g., c, T, mean, data, df, weights). If in doubt check the help to see if the name is already in use. RStudio will also autocomplete to show you if an object (or function) with that name already exits. It's also best to avoid dots (.) within a variable name as in my.dataset. It is also recommended to use nouns for variable names, and verbs for function names."
+
+- Class: text
+  Output: "It's worth emphasizing that <- is the operator that assigns values on the right to objects on the left. You can think of it like an arrow that points from the value to the object. This operator is mostly similar to = but not always. Learn to use <- as it is good programming practice. Using = in place of <- can lead to issues down the line."
+
+- Class: cmd_question
+  Output: "Okay ... let's try it out. Create an object that's called weight_kg and has a value of 90"
+  CorrectAnswer: weight_kg <- 90
+  AnswerTests: omnitest(correctExpr="weight_kg <- 90")
+  Hint: "Make sure you are using the <- assignment operator and spelling the weight_kg variable name correctly, and with the underscore and no spaces."
+
+- Class: cmd_question
+  Output: "When assigning a value to an object, R does not print anything. You can force to print the value by typing the name. Type weight_kg and see how it works."
+  CorrectAnswer: weight_kg
+  AnswerTests: omnitest(correctExpr="weight_kg")
+  Hint: "To print the value of an object just type its name ... in this case weight_kg"
+
+- Class: cmd_question
+  Output: "Now that R has weight_kg in memory, we can do arithmetic with it. For instance, we may want to convert this weight in pounds. We don't want to lose that conversion so let's store it in a new variable called weight_lb. Give it a shot ... and in case you're rusty on metric conversion, weight in pounds is 2.2 times the weight in kg."
+  CorrectAnswer: weight_lb <- 2.2 * weight_kg
+  AnswerTests: omnitest(correctExpr="weight_lb <- 2.2 * weight_kg")
+  Hint: "To create a new object, type its name (weight_lb) followed by the assignment operator and then the function that yields its value. In this example use 2.2 then the multiplication symbol (*) and the first object's name (weight_kg)"
+
+- Class: cmd_question
+  Output: "We can also change a variable's value by assigning it a new one. Let's say for instance the weight_kg is now 100. All we need to do is use the same assignment syntax with the new value. Go for it."
+  CorrectAnswer: weight_kg <- 100
+  AnswerTests: omnitest(correctExpr="weight_kg <- 100")
+  Hint: "Use the <- operator with the same object name as before (weight_kg) but a new value (100)."
+
+- Class: mult_question
+  Output: "Now that you've changed weight_kg to 100, if you were to print the weight_lb variable to the console what would its value be?"
+  AnswerChoices: 198;220
+  CorrectAnswer: 198
+  AnswerTests: omnitest(correctVal= '198')
+  Hint: "Even though you've updated weight_kg you haven't updated weight_lb from its original assignment."  
+  
+- Class: text
+  Output: "It's important to understand that assigning a value to one variable does not change the values of other variables. So in this case if you wanted to update the weight_lb variable so that it's value was 220 then you would have to reassign it again after setting weight_kg to 100."
+
+- Class: text
+  Output: "You can see what objects (variables) are stored by viewing the Environment tab in Rstudio. You can also use the ls() function. You can remove objects (variables) with the rm() function. You can do this one at a time or remove several objects at once."
+
+- Class: cmd_question
+  Output: "Things were getting a little confusing with the converted weight_lb variable. Go ahead and remove it."
+  CorrectAnswer: rm(weight_lb)
+  AnswerTests: omnitest(correctExpr="rm(weight_lb)")
+  Hint: "Use the rm([INSERT OBJECT NAME HERE]) to remove an object."
+
+- Class: text
+  Output: "Good job. You've made it through the first lesson, here's a recap of what we covered ... "
+
+- Class: text
+  Output: "First we used R as a glorified calculator ... "
+
+- Class: text
+  Output: "Then we began assigning names to values ... "
+
+- Class: text
+  Output: "Then we used those names to perform some simple math on the objects  ... "
+
+- Class: text
+  Output: "Last of all cleaned up our workspace by removing unused objects."
+  

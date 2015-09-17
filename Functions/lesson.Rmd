@@ -8,7 +8,7 @@ Version:      2.3.1
 
 --- &text
 
-Welcome. This is the second lesson ('Functions') in the 'Introdcution To R' swirl course. We'll briefly introduce the syntax for calling R's built-in functions, and also show you how to get help interactively.
+Welcome. This is the second lesson ('Functions') in the 'Introduction To R' swirl course. We'll briefly introduce the syntax for calling R's built-in functions, and also show you how to get help interactively.
 
 --- &cmd_question
 
